@@ -23,7 +23,7 @@ async function main() {
         app.post("/task", createNewTask)
 
         // get only all the tasks added by the logged in user 
-        app.get("/task", getAllTasks)
+        app.get("/tasks", getAllTasks)
 
     } catch (error) {
         if (error) {
