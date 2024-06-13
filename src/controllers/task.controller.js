@@ -15,7 +15,7 @@ const createNewTask = async (req, res) => {
 // get only all the tasks added by the logged in user 
 const getAllTasks = async (req, res) => {
     try {
-        const email = req.qyuery?.email
+        const email = req.query?.email
         const allTasks = await Task.find({ userEmail: email })
         res.send(allTasks)
     } catch (error) {
@@ -24,5 +24,16 @@ const getAllTasks = async (req, res) => {
         }
     }
 }
+
+// // get all tasks according to its status -->>to-do,on-going,completed
+// const getAllTasksByStatus = async () => {
+//     try {
+//         const status = 
+//     } catch (error) {
+//         if (error) {
+//             console.log(error);
+//         }
+//     }
+// }
 
 export { createNewTask, getAllTasks }
