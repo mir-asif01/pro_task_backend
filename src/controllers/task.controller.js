@@ -38,6 +38,19 @@ const getOneTask = async (req, res) => {
     }
 }
 
+const deleteTask = async (req, res) => {
+    try {
+        const taskId = req.params.id
+        const result = await Task.findByIdAndDelete(taskId)
+        res.send(result)
+
+    } catch (error) {
+        if (error) {
+            console.log(error);
+        }
+    }
+}
+
 // const updateTaskStatusCompleted = async (req, res) => {
 //     try {
 //         const taskId = req.params.id
@@ -58,4 +71,4 @@ const getOneTask = async (req, res) => {
 //         }
 //     }
 // }
-export { createNewTask, getAllTasks, getOneTask }
+export { createNewTask, getAllTasks, getOneTask, deleteTask }

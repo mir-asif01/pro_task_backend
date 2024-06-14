@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import { createNewTask, getAllTasks, getOneTask, updateTaskStatusCompleted, updateTaskStatusOnGoing } from "./controllers/task.controller.js"
+import { createNewTask, deleteTask, getAllTasks, getOneTask } from "./controllers/task.controller.js"
 const app = express()
 const port = process.env.PORT ?? 4000
 
@@ -26,7 +26,10 @@ async function main() {
         app.get("/tasks", getAllTasks)
 
         // get task by id
-        app.get("/task/:id", getOneTask)
+        app.get("/tasks/:id", getOneTask)
+
+        //delete one task
+        app.delete("/tasks/:id", deleteTask)
 
     } catch (error) {
         if (error) {
