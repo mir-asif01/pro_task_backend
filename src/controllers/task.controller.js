@@ -51,6 +51,31 @@ const deleteTask = async (req, res) => {
     }
 }
 
+const updateTask = async (req, res) => {
+    try {
+        const taskId = req.params.id
+        const updatedTask = req.body
+        const result = await Task.findByIdAndUpdate(
+            taskId,
+            {
+                $set: {
+                    title: updatedTask?.title,
+                    description: updatedTask?.description
+                }
+            },
+            {
+                new: true
+            }
+        )
+        res.send(result)
+
+    } catch (error) {
+        if (error) {
+            console.log(error);
+        }
+    }
+}
+
 // const updateTaskStatusCompleted = async (req, res) => {
 //     try {
 //         const taskId = req.params.id
@@ -71,4 +96,4 @@ const deleteTask = async (req, res) => {
 //         }
 //     }
 // }
-export { createNewTask, getAllTasks, getOneTask, deleteTask }
+export { createNewTask, getAllTasks, getOneTask, deleteTask, updateTask }
