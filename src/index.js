@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import { createNewTask, getAllTasks } from "./controllers/task.controller.js"
+import { createNewTask, getAllTasks, getOneTask, updateTaskStatusCompleted, updateTaskStatusOnGoing } from "./controllers/task.controller.js"
 const app = express()
 const port = process.env.PORT ?? 4000
 
@@ -25,9 +25,12 @@ async function main() {
         // get only all the tasks added by the logged in user 
         app.get("/tasks", getAllTasks)
 
+        // get task by id
+        app.get("/task/:id", getOneTask)
+
     } catch (error) {
         if (error) {
-            console.log("db connection error");
+            console.log("db connection error")
         }
     }
 }

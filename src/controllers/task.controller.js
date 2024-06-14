@@ -25,15 +25,37 @@ const getAllTasks = async (req, res) => {
     }
 }
 
-// // get all tasks according to its status -->>to-do,on-going,completed
-// const getAllTasksByStatus = async () => {
+const getOneTask = async (req, res) => {
+    try {
+        const taskId = req.params.id
+        const task = await Task.findById(taskId)
+        res.send(task)
+
+    } catch (error) {
+        if (error) {
+            console.log(error);
+        }
+    }
+}
+
+// const updateTaskStatusCompleted = async (req, res) => {
 //     try {
-//         const status = 
+//         const taskId = req.params.id
+//         await Task.findByIdAndUpdate(
+//             taskId,
+//             {
+//                 $set: {
+//                     status: "completed"
+//                 }
+//             },
+//             {
+//                 new: true
+//             }
+//         )
 //     } catch (error) {
 //         if (error) {
 //             console.log(error);
 //         }
 //     }
 // }
-
-export { createNewTask, getAllTasks }
+export { createNewTask, getAllTasks, getOneTask }
