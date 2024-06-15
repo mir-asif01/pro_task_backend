@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import { createNewTask, deleteTask, getAllTasks, getOneTask, updateTask } from "./src/controllers/task.controller.js"
+import { createNewTask, deleteTask, getAllTasks, getOneTask, updateTask } from "./controllers/task.controller.js"
 const app = express()
 const port = process.env.PORT ?? 4000
 
