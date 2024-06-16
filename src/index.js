@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import { createNewTask, deleteTask, getAllTasks, getOneTask, updateTask } from "./controllers/task.controller.js"
+import { addReview, getAllReviews } from "./controllers/review.controller.js"
 const app = express()
 const port = process.env.PORT ?? 4000
 
@@ -33,6 +34,12 @@ async function main() {
 
         // update single task
         app.patch("/tasks/:id", updateTask)
+
+        // add new review
+        app.post("/add-review", addReview)
+
+        // get all reviews
+        app.get("/reviews", getAllReviews)
 
     } catch (error) {
         if (error) {
