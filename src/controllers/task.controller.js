@@ -75,25 +75,13 @@ const updateTask = async (req, res) => {
         }
     }
 }
+const updateTaskStatus = async (req, res) => {
+    const { updatedStatus } = req.body
+    const taskId = req.params.id
+    const task = await Task.findById(taskId)
+    task.status = updatedStatus
+    const result = task.save()
+    res.send(result)
+}
 
-// const updateTaskStatusCompleted = async (req, res) => {
-//     try {
-//         const taskId = req.params.id
-//         await Task.findByIdAndUpdate(
-//             taskId,
-//             {
-//                 $set: {
-//                     status: "completed"
-//                 }
-//             },
-//             {
-//                 new: true
-//             }
-//         )
-//     } catch (error) {
-//         if (error) {
-//             console.log(error);
-//         }
-//     }
-// }
-export { createNewTask, getAllTasks, getOneTask, deleteTask, updateTask }
+export { createNewTask, getAllTasks, getOneTask, deleteTask, updateTask, updateTaskStatus }
